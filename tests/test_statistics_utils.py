@@ -174,6 +174,5 @@ class TestStatisticsUtils(unittest.TestCase):
         with self.assertRaises(ValueError):
             utils.min_max_scale(data_constant)
 
-
 if __name__ == "__main__":
     unittest.main()
