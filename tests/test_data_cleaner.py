@@ -89,7 +89,7 @@ class TestDataCleaner(unittest.TestCase):
 
         self.assertEqual(result["name"].isna().sum(), 0)
         self.assertEqual(result["age"].isna().sum(), 0)
-        
+
         self.assertLess(len(result), len(df))
 
     def test_drop_invalid_rows_raises_keyerror_for_unknown_column(self):
@@ -101,6 +101,11 @@ class TestDataCleaner(unittest.TestCase):
         - Llamar a drop_invalid_rows con una columna que no existe (ej: "does_not_exist")
         - Verificar que se lanza un KeyError (usar self.assertRaises)
         """
+
+        df = make_sample_df()
+        cleaner = DataCleaner()
+        with self.assertRaises(KeyError):
+            cleaner.drop_invalid_rows(df, ["No existe columna"])
 
     def test_trim_strings_strips_whitespace_without_changing_other_columns(self):
         """Test que verifica que el método trim_strings elimina correctamente los espacios
